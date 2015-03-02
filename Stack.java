@@ -1,63 +1,58 @@
 
 public class Stack 
 {
-	private Node head;
-	private Node tail;
-	private int count;
+	private Node top;
 	
 	public Stack()
 	{
-		this.head = null;
-		this.tail = null;
-		this.count = 0;
+		this.top = null;
+	}
+	
+	public boolean isEmpty()
+	{
+		return this.top == null;
 	}
 	
 	public void push (int payload)
 	{
 		Node n = new Node(payload);
-		if(head == null)
+		if(this.top == null)
 		{
-			head = n;
-			tail = n;
+			this.top = n;
 		}
 		else
 		{
-			n.setNextNode(head);
-			head.setPrevNode(n);
-			head = n;
+			n.setNextNode(top);
+			this.top = n;
 		}
-		this.count++;
 	}
 	
 	//pop(removeFront)
 	public int pop() throws Exception
 	{
-		if(head == null)
+		if(top == null)
 		{
-			throw new Exception("Can Not Remove Front: Empty List");
-		}
-		else if(this.count == 1)
-		{
-			int payloadToReturn = this.head.getPayload();
-			this.head = null;
-			this.tail = null;
-			this.count = 0;
-			return payloadToReturn;
+			throw new Exception("Empty Staack!!! Cry More");
 		}
 		else
 		{
-			Node curr = head;
-			curr.getNextNode().setPrevNode(null);
-			head = curr.getNextNode();
-			curr.setNextNode(null);
-			this.count--;
-			return curr.getPayload();
+			int valToReturn = this.top.getPayload();
+			this.top = this.top.getNextNode();
+			return valToReturn;
 		}
+
 	}
 	
 	//peek(get at index(0))
-	public void peek()
+	public int peek() throws Exception
 	{
-		System.out.println(this.head.getPayload());
+		if(top == null)
+		{
+			throw new Exception("Empty Staack!!! Cry More");
+		}
+		else
+		{
+			return this.top.getPayload();
+		}
 	}
 }
