@@ -58,7 +58,6 @@ public class RPCalc
 					System.out.println(num);
 					this.theStack.push(num);
 				}
-				
 			}
 			else if(val.equalsIgnoreCase("sum"))
 			{
@@ -68,11 +67,11 @@ public class RPCalc
 					continue;
 				}
 				int sum = 0;
-				while (!theStack.isEmpty())
+				while (!this.theStack.isEmpty())
 				{
 					sum = sum + this.theStack.pop();
 				}
-				System.out.println(sum);
+				this.theStack.push(sum);
 			}
 			else if(this.isNumber(val))
 			{
@@ -104,7 +103,6 @@ public class RPCalc
 			{
 				System.out.println("Illegal Input");
 			}
-			
 		}
 	}
 }
